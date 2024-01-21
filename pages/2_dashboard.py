@@ -7,6 +7,9 @@ import calendar
 import numpy as np
 import plotly.graph_objects as go
 
+# Set page configuration - this should be the first Streamlit command
+st.set_page_config(page_title="Flood Monitoring Dashboard", page_icon="Images/flood.ico", layout="wide", initial_sidebar_state="expanded")
+
 # Function to load data
 def load_data():
     data_path = 'Dataset/transformed_data.csv'
