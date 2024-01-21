@@ -5,7 +5,6 @@ import pandas as pd
 import plotly.express as px
 import calendar
 import numpy as np
-from streamlit_lottie import st_lottie
 import plotly.graph_objects as go
 
 
