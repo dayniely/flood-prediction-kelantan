@@ -5,8 +5,6 @@ import pandas as pd
 import plotly.express as px
 import calendar
 import numpy as np
-from folium.plugins import HeatMap
-from streamlit_folium import folium_static
 import plotly.graph_objects as go
 
 # Load CSS
