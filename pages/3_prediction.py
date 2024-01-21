@@ -7,10 +7,6 @@ import calendar
 import numpy as np
 import plotly.graph_objects as go
 
-# Load CSS
-with open( "style\style.css" ) as css:
-    st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
-
 # Function to load data
 def load_data():
     data_path = 'Dataset/predicted_data.csv'
