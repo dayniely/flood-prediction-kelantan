@@ -90,14 +90,20 @@ def show_dashboard():
         monthly_totals = total_water_levels.groupby('Month')['Water Level'].sum().reset_index()
 
         # Sort and select the top 5 months with the highest total water levels
-        top_months = monthly_totals.sort_values('Water Level', ascending=True).head(5)
+        top_months = monthly_totals.sort_values('Water Level', ascending=False).head(5)
+
+        # Sort the top months in descending order for the chart display
+        top_months_display = top_months.sort_values('Water Level', ascending=True)
 
         # Create a histogram/bar chart for these months, with different colors
-        fig_hist = px.bar(top_months, x='Water Level', y='Month', orientation='h', 
+        fig_hist = px.bar(top_months_display, x='Water Level', y='Month', orientation='h', 
                         title="Top 5 Months with Highest Total Water Level", 
                         color='Water Level',  # Color by total water level
                         color_continuous_scale=px.colors.sequential.Viridis)  # Use a color scale
         fig_hist.update_layout(xaxis_title='Total Water Level', yaxis_title='Month', bargap=0.2)
+
+    # Display the chart
+    st.plotly_chart(fig_hist, use_container_width=True)
 
     # Display the chart
     st.plotly_chart(fig_hist, use_container_width=True)
