@@ -90,7 +90,7 @@ def show_dashboard():
         monthly_totals = total_water_levels.groupby('Month')['Water Level'].sum().reset_index()
 
         # Sort and select the top 5 months with the highest total water levels
-        top_months = monthly_totals.sort_values('Water Level', ascending=False).head(5)
+        top_months = monthly_totals.sort_values('Water Level', ascending=True).head(5)
 
         # Create a histogram/bar chart for these months, with different colors
         fig_hist = px.bar(top_months, x='Water Level', y='Month', orientation='h', 
