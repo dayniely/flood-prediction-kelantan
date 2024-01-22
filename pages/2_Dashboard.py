@@ -93,7 +93,7 @@ def show_dashboard():
         top_months = monthly_totals.sort_values('Water Level', ascending=False).head(5)
 
         # Create a histogram/bar chart for these months, with different colors
-        fig_hist = px.bar(top_months, x='Water Level', y='Month', orientation='v', 
+        fig_hist = px.bar(top_months, x='Water Level', y='Month', orientation='h', 
                         title="Top 5 Months with Highest Total Water Level", 
                         color='Water Level',  # Color by total water level
                         color_continuous_scale=px.colors.sequential.Viridis)  # Use a color scale
