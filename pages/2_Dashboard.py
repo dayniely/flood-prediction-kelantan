@@ -78,24 +78,29 @@ def show_dashboard():
         st.plotly_chart(fig_line, use_container_width=True)
 
 
-    # Histogram for Months with Highest Water Level
+    # Histogram for Months with Highest Total Water Level
     with col2:
-        # Calculate max water levels for each month
-        max_water_levels = location_data.groupby('Month')['Water Level'].max().reset_index()
+        # Calculate total water levels for each month within the selected years
+        total_water_levels = location_data.groupby(['Year', 'Month'])['Water Level'].sum().reset_index()
 
-        # Sort and select the top 5 months with the highest water levels
-        top_months = max_water_levels.sort_values('Water Level', ascending=False).head(5)
+        # Filter only the years selected by the slider
+        total_water_levels = total_water_levels[total_water_levels['Year'].isin([str(y) for y in range(selected_year_range[0], selected_year_range[1] + 1)])]
+
+        # Group by month to get the sum of water levels for each month across all selected years
+        monthly_totals = total_water_levels.groupby('Month')['Water Level'].sum().reset_index()
+
+        # Sort and select the top 5 months with the highest total water levels
+        top_months = monthly_totals.sort_values('Water Level', ascending=False).head(5)
 
         # Create a histogram/bar chart for these months, with different colors
         fig_hist = px.bar(top_months, x='Water Level', y='Month', orientation='h', 
-                        title="Months Highest Water Level", 
-                        color='Water Level',  # Color by water level
+                        title="Top 5 Months with Highest Total Water Level", 
+                        color='Water Level',  # Color by total water level
                         color_continuous_scale=px.colors.sequential.Viridis)  # Use a color scale
-        fig_hist.update_layout(xaxis_title='Max Water Level', yaxis_title='Month', bargap=0.2)
+        fig_hist.update_layout(xaxis_title='Total Water Level', yaxis_title='Month', bargap=0.2)
 
-        # Display the chart
-        st.plotly_chart(fig_hist, use_container_width=True)
-
+    # Display the chart
+    st.plotly_chart(fig_hist, use_container_width=True)
 
     # Area Charts in a 2x2 Grid
     st.write("## Detailed Water Level Analysis")
