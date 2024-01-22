@@ -78,7 +78,7 @@ def show_dashboard():
         st.plotly_chart(fig_line, use_container_width=True)
 
 
-    # Histogram for Months with Highest Total Water Level
+   # Histogram for Months with Highest Total Water Level
     with col2:
         # Calculate total water levels for each month within the selected years
         total_water_levels = location_data.groupby(['Year', 'Month'])['Water Level'].sum().reset_index()
@@ -102,11 +102,8 @@ def show_dashboard():
                         color_continuous_scale=px.colors.sequential.Viridis)  # Use a color scale
         fig_hist.update_layout(xaxis_title='Total Water Level', yaxis_title='Month', bargap=0.2)
 
-    # Display the chart
-    st.plotly_chart(fig_hist, use_container_width=True)
-
-    # Display the chart
-    st.plotly_chart(fig_hist, use_container_width=True)
+        # Display the chart
+        st.plotly_chart(fig_hist, use_container_width=True)
 
     # Area Charts in a 2x2 Grid
     st.write("## Detailed Water Level Analysis")
