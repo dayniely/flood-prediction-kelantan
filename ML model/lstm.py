@@ -58,7 +58,7 @@ lstm_predictions_rescaled = scaler.inverse_transform(np.hstack((scaled_data[:-1,
 predicted_data = pd.DataFrame(lstm_predictions_rescaled, columns=data_model.columns)
 
 # Add the 'Location' column back to the predicted data
-predicted_data['Location'] = location_data[:-1]  # Exclude the last entry as it's not included in the predictions
+predicted_data['Location'] = location_data[:-1]
 
 # Reorder columns to have 'Location' as the first column
 predicted_data = predicted_data[['Location'] + [col for col in predicted_data.columns if col != 'Location']]

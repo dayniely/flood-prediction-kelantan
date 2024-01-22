@@ -16,7 +16,6 @@ def show_home():
 
     st.title('Kelantan River Basin')
 
-    # You can adjust the width of the image in the sidebar if needed
     image = Image.open('Images/kelantan.png')  # Update the path to your image
     st.image(image, caption='Kelantan River', width=1100)
 
